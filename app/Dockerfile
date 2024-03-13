@@ -4,18 +4,21 @@ FROM python:3.9
 # 作業ディレクトリの設定
 WORKDIR /workspace
 
-COPY ./ ./
+COPY ./requirements.txt /workspace/
 
-# 環境変数の設定
-ENV FLASK_APP=app
+# 依存関係のインストール
+RUN pip install --no-cache-dir -r requirements.txt
 
-# pipをアップグレードし、依存関係をインストール
-RUN pip install --upgrade pip 
-RUN pip install flask
-# RUN pip install -r requirements.txt 
+# # 環境変数の設定
+# ENV FLASK_APP=app
 
-# ポート5000を公開
-EXPOSE 5000
+# # pipをアップグレードし、依存関係をインストール
+# RUN pip install --upgrade pip 
+# RUN pip install flask
+# # RUN pip install -r requirements.txt 
 
-# Flaskアプリの実行。Docker Composeファイルで上書きされます。
-CMD ["flask", "run", "--host=0.0.0.0"]
+# # ポート5000を公開
+# EXPOSE 5000
+
+# # Flaskアプリの実行。Docker Composeファイルで上書きされます。
+# CMD ["flask", "run", "--host=0.0.0.0"]
