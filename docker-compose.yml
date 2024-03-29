@@ -8,6 +8,7 @@ services:
     tty: true
     volumes:
       - ./app:/workspace
+    working_dir: /workspace
     environment:
       - FLASK_APP=app
-    command: flask run --host=0.0.0.0
+    # command: flask run --host=0.0.0.0
